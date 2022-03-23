@@ -8,7 +8,17 @@ const connectDB = require('./dbconnect')
 const app = express();
 connectDB()
 
+app.set('view engine', 'ejs')
+
 app.use('/user_data', require('./routes/userRoutes'))
+
+app.listen(3000, function() {
+    console.log(`listening on ${PORT}`)
+  })
+
+app.get ('/', (req, res) => {
+  res.render('index.ejs')
+})
 
 
 /*

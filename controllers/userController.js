@@ -1,5 +1,15 @@
-const getUsers = (req,res) =>{
-     res.send('<h1>Users will show up here</h1>') 
+const Users = require('../userSchema')
+
+const getUsers = async (req,res) =>{
+     try{
+         const showUsers = await Users.find().toArray()
+         .then(results =>{
+             res.render('../views/index.ejs', showUsers)
+             console.log(showUsers)
+         })
+     }catch(err){
+         res.json({message:err})
+     }
     }
 
     const getUser = (req,res) =>{
