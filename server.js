@@ -1,6 +1,6 @@
 //Loading dependencies
 const express = require('express');
-const bodyParser= require('body-parser');
+const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config()
 const PORT = process.env.PORT || 3000
 const connectDB = require('./dbconnect')
@@ -12,11 +12,11 @@ app.set('view engine', 'ejs')
 
 app.use('/user_data', require('./routes/userRoutes'))
 
-app.listen(3000, function() {
-    console.log(`listening on ${PORT}`)
-  })
+app.listen(process.env.PORT || 3000, function () {
+  console.log(`listening on ${PORT}`)
+})
 
-app.get ('/', (req, res) => {
+app.get('/', (req, res) => {
   res.render('index.ejs')
 })
 
