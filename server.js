@@ -14,7 +14,8 @@ const Users = require('./userSchema')
 
     app.set('view engine', 'ejs')
     
-    app.use(express.static("views"));
+    app.use(express.static('public'))
+
     app.use(bodyParser.urlencoded({ extended: true }))
 
 app.listen(process.env.PORT || 3000, function() {
@@ -53,14 +54,10 @@ app.listen(process.env.PORT || 3000, function() {
   } 
   })
 
-
-app.locals.deleteStudent = async function(req,res) {
-  let studID = document.getElementById("studid".value)
-  Users.findOneAndDelete({student_id: studID})
-  }
-
   app.get('/data', (req, res) => {
     res.render('index.ejs')
   })
   
-  })
+  })  
+
+

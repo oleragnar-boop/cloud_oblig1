@@ -11,10 +11,14 @@
     <h2>Data</h2>
     <a href="/data">Refresh</a><br>
     
+<form method="GET">
+        <input type="number" placeholder="Enter id of a student" name="searchId" id="searchId"><br>
+        <button type="submit" id='searchButton'>Search</button>
+    </form>
 
-    <form action="/data" onsubmit="deleteStudent()">
-        <input type="number" placeholder="Enter id of student you wish to delete" name="studid" id="studid" required><br>
-        <button type="submit">Submit</button><br>
+    <form method="GET">
+        <input type="number" placeholder="Enter id of a student" name="delId" id="delId"><br>
+        <button type="submit" id='deleteButton'>Delete</button>
     </form>
 
   <ul class="user_data">
@@ -38,6 +42,6 @@
       </div>
     <% } %>
   </ul>
-  <script src="../server.js"></script>
+  <script src="/functions.js"></script>
 </body>
 </html>
