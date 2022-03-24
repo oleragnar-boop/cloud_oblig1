@@ -81,18 +81,24 @@ app.get('/delstudent', async (req, res) => {
   })
 
   app.post('/updatestudent', async (req, res) => {
-    await mongoose.connect('mongodb+srv://admin:adminpassword@cluster0.qmp2g.mongodb.net/user_data?retryWrites=true&w=majority', { useUnifiedTopology: true })
-    Users.findOneAndUpdate({
-      student_id: req.params.student_id},
-      {$set:{
+    dataCollection.findOneAndUpdate(
+      {
+      student_id: parseInt(req.body.student_id)
+    },
+      {
+        $set:
+        {
+      name: req.body.name,
       surname: req.body.surname,
       age: req.body.age,
       nationality: req.body.nationality,
       degree: req.body.degree,
       dateAdded: req.body.dateAdded
-    }}, function(err) {
-      if (err) return res.send(500, {error: err});
-      res.redirect('/')
-    })
+    }
+  },
+  ).then((result) => {
+    res.redirect('/')
+  })
+  .catch((error) => console.error(error));
 })
-})
+});
