@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Form</title>
+  <title>Add and update forms</title>
 </head>
 <body>
   <a href="/data">Data Portal</a>
-  <h1>Student Form</h1>
+  <h1>Add and update forms</h1><br>
 
+  <h2>Add student</h2>
   <form action="/" method="POST">
     <label for="name">First name:</label><br>
     <input type="text" placeholder="Firstname" name="name" id="name" required><br>
@@ -21,7 +22,26 @@
     <input type="text" placeholder="Nationality" name="nationality" id="nationality" required><br>
     <label for="degree">Degree:</label><br>
     <input type="text" placeholder="Degree" name="degree" id="degree" required><br>
-    <button type="submit">Submit</button>
+    <button type="submit">Add User</button>
   </form><br>
+
+  <h2>Update student</h2>
+  <form action="/updatestudent" method="POST">
+    <label for="name">First name:</label><br>
+    <input type="text" placeholder="Firstname" name="name" id="name" required><br>
+    <label for="surname">Surname:</label><br>
+    <input type="text" placeholder="Surname" name="surname" id="surname" required><br>
+    <label for="student_id">Student Id:</label><br>
+    <input type="number" placeholder="Student Id" name="student_id" id="student_id" required><br>
+    <label for="age">Age:</label><br>
+    <input type="number" placeholder="Age" name="age" id="age" required><br>
+    <label for="nationality">Nationality:</label><br>
+    <input type="text" placeholder="Nationality" name="nationality" id="nationality" required><br>
+    <label for="degree">Degree:</label><br>
+    <input type="text" placeholder="Degree" name="degree" id="degree" required><br>
+    <button type="submit">Update User</button>
+  </form><br>
+
+
 </body>
 </html>

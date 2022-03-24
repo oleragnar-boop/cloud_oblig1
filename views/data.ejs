@@ -7,19 +7,33 @@
 </head>
 <body>
 
-    <a href="/">Student Form</a>
+    <a href="/">Add and Update Forms</a>
     <h2>Data</h2>
     <a href="/data">Refresh</a><br>
     
+    <h3>Search for a student by id</h3>
     <p>Current student selected: <%= currentId %></p>
 
-<form method="GET">
+<form method="GET" action="/getstudent">
         <input type="number" placeholder="Enter id of a student" name="searchid" id="searchid"><br>
         <button type="submit" id='searchButton'>Search</button>
     </form>
 
-<button id="deleteButton" name='deleteButton'>Delete Current User</button> 
+    <h3>Search for a degree</h3>
+    <p>Current degree selected: <%= currentdegree %></p>
 
+    <form method="GET" action="/getdegrees">
+      <input type="text" placeholder="Enter a degree" name="degree" id="degree"><br>
+      <button type="submit" id='degreebutton'>Search</button>
+  </form>
+
+  <h3>Enter id of a student to delete</h3>
+  <form method="GET" action="/delstudent">
+    <input type="number" placeholder="Enter id of a student" name="searchid" id="searchid"><br>
+    <button type="submit" id='deleteButton'>Delete</button>
+</form><br>
+
+<h3>Students will appear here in order of data added:</h3>
   <ul class="user_data">
     <% for(var i = 0; i < user_data.length; i++) {%>
       <div class="data">
@@ -41,6 +55,5 @@
       </div>
     <% } %>
   </ul>
-  <script src="main.js"></script>
 </body>
 </html>

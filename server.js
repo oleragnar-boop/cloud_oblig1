@@ -14,8 +14,6 @@ const Users = require('./userSchema')
     const dataCollection = db.collection('user_data')
 
     app.set('view engine', 'ejs')
-    
-    app.use(express.static('public'))
 
     app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -28,31 +26,39 @@ app.listen(process.env.PORT || 3000, function() {
       })
 
   app.get('/data', async (req, res) => {
-    if(req.query.searchid == ""){
     db.collection ('user_data').find().toArray()
     .then(results => {
-      res.render('data', {user_data: results, currentId: req.query.searchid})
+      res.render('data', {user_data: results, currentId: req.query.searchid, currentdegree: req.query.degree})
     })
-    } else {
-      let currentid = parseInt(req.query.searchid);
+})
+
+app.get('/getstudent', async (req, res) => {
+  let currentid = parseInt(req.query.searchid);
+  let currentdegree = req.query.degree;
       db.collection ('user_data').find({student_id: currentid}).toArray()
       .then(results => {
-        res.render('data', {user_data: results, currentId: currentid})
+        res.render('data', {user_data: results, currentId: currentid,  currentdegree: currentdegree})
     })
-  }
 })
 
-app.delete('/data', (req, res) => {
-  let currentid = parseInt(req.query.searchid)
-  dataCollection.deleteOne(
-    { student_id: currentid}
-  )
-  .then(result => {
-    res.json(`Student deleted`)
-  })
-  .catch(error => console.error(error))
+app.get('/getdegrees', async (req, res) => {
+  let currentid = parseInt(req.query.searchid);
+  let currentdegree = req.query.degree;
+      db.collection ('user_data').find({degree: currentdegree}).toArray()
+      .then(results => {
+        res.render('data', {user_data: results, currentdegree: currentdegree, currentId: currentid})
+    })
 })
 
+app.get('/delstudent', async (req, res) => {
+  let currentid = parseInt(req.query.searchid);
+  let currentdegree = req.query.degree;
+      db.collection ('user_data').findOneAndDelete({student_id: currentid})
+      .then(results => {
+        res.render('data', {user_data: results, currentId: currentid,  currentdegree: currentdegree})
+        console.log("Student", currentid, "Deleted")
+    })
+})
 
   app.post('/', async (req, res) => {
     let newUser = new Users({
@@ -73,4 +79,20 @@ app.delete('/data', (req, res) => {
     console.log(err)
   } 
   })
+
+  app.post('/updatestudent', async (req, res) => {
+    await mongoose.connect('mongodb+srv://admin:adminpassword@cluster0.qmp2g.mongodb.net/user_data?retryWrites=true&w=majority', { useUnifiedTopology: true })
+    Users.findOneAndUpdate({
+      student_id: req.params.student_id},
+      {$set:{
+      surname: req.body.surname,
+      age: req.body.age,
+      nationality: req.body.nationality,
+      degree: req.body.degree,
+      dateAdded: req.body.dateAdded
+    }}, function(err) {
+      if (err) return res.send(500, {error: err});
+      res.redirect('/')
+    })
+})
 })
