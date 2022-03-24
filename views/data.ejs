@@ -11,15 +11,14 @@
     <h2>Data</h2>
     <a href="/data">Refresh</a><br>
     
+    <p>Current student selected: <%= currentId %></p>
+
 <form method="GET">
-        <input type="number" placeholder="Enter id of a student" name="searchId" id="searchId"><br>
+        <input type="number" placeholder="Enter id of a student" name="searchid" id="searchid"><br>
         <button type="submit" id='searchButton'>Search</button>
     </form>
 
-    <form method="GET">
-        <input type="number" placeholder="Enter id of a student" name="delId" id="delId"><br>
-        <button type="submit" id='deleteButton'>Delete</button>
-    </form>
+<button id="deleteButton" name='deleteButton'>Delete Current User</button> 
 
   <ul class="user_data">
     <% for(var i = 0; i < user_data.length; i++) {%>
@@ -42,6 +41,6 @@
       </div>
     <% } %>
   </ul>
-  <script src="/functions.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

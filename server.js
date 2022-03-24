@@ -6,6 +6,7 @@ const MongoClient = require('mongodb').MongoClient
 const Users = require('./userSchema')
 
 
+
     MongoClient.connect('mongodb+srv://admin:adminpassword@cluster0.qmp2g.mongodb.net/user_data?retryWrites=true&w=majority', { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database')
@@ -26,13 +27,32 @@ app.listen(process.env.PORT || 3000, function() {
         res.render('index.ejs')
       })
 
-  app.get('/data', (req, res) => {
+  app.get('/data', async (req, res) => {
+    if(req.query.searchid == ""){
     db.collection ('user_data').find().toArray()
     .then(results => {
-      res.render('data', {user_data: results})
+      res.render('data', {user_data: results, currentId: req.query.searchid})
     })
-    .catch(error => console.error(error))
+    } else {
+      let currentid = parseInt(req.query.searchid);
+      db.collection ('user_data').find({student_id: currentid}).toArray()
+      .then(results => {
+        res.render('data', {user_data: results, currentId: currentid})
+    })
+  }
+})
+
+app.delete('/data', (req, res) => {
+  let currentid = parseInt(req.query.searchid)
+  dataCollection.deleteOne(
+    { student_id: currentid}
+  )
+  .then(result => {
+    res.json(`Student deleted`)
   })
+  .catch(error => console.error(error))
+})
+
 
   app.post('/', async (req, res) => {
     let newUser = new Users({
@@ -53,11 +73,4 @@ app.listen(process.env.PORT || 3000, function() {
     console.log(err)
   } 
   })
-
-  app.get('/data', (req, res) => {
-    res.render('index.ejs')
-  })
-  
-  })  
-
-
+})
