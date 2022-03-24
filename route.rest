@@ -1,0 +1,5 @@
+
+POST http://localhost:3000/ 
+content-type: application/json
+
+{"name":"ole","surname":"randen","student_id":"1","age":"22","nationality":"Norway","degree":"Bachelor"}

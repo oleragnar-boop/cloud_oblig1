@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Assignment 1</title>
+  <title>Student Form</title>
 </head>
 <body>
-  <h1>Student data</h1>
+  <a href="/data">Data Portal</a>
+  <h1>Student Form</h1>
 
-  <!--Form adding user data to the database-->
-  <form action="/user_data" method="POST">
+  <form action="/" method="POST">
     <label for="name">First name:</label><br>
-    <input type="text" placeholder="Firstname" name="name"  id="name" required><br>
+    <input type="text" placeholder="Firstname" name="name" id="name" required><br>
     <label for="surname">Surname:</label><br>
-    <input type="text" placeholder="Surname" name="surname" id="surname"  required><br>
+    <input type="text" placeholder="Surname" name="surname" id="surname" required><br>
     <label for="student_id">Student Id:</label><br>
     <input type="number" placeholder="Student Id" name="student_id" id="student_id" required><br>
     <label for="age">Age:</label><br>
@@ -23,10 +23,5 @@
     <input type="text" placeholder="Degree" name="degree" id="degree" required><br>
     <button type="submit">Submit</button>
   </form><br>
-
-  <h2>Data Portal</h2>
-
-
-
 </body>
 </html>

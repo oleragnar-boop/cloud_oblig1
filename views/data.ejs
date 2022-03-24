@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Portal</title>
+</head>
+<body>
+
+    <a href="/">Student Form</a>
+    <h2>Data</h2>
+    <a href="/data">Refresh</a><br>
+    
+
+    <form action="/data" onsubmit="deleteStudent()">
+        <input type="number" placeholder="Enter id of student you wish to delete" name="studid" id="studid" required><br>
+        <button type="submit">Submit</button><br>
+    </form>
+
+  <ul class="user_data">
+    <% for(var i = 0; i < user_data.length; i++) {%>
+      <div class="data">
+        <h3>Firstname:</h3>
+        <span><%= user_data[i].name %></span><br>
+        <h3>Surname:</h3>
+        <span><%= user_data[i].surname %></span><br>
+        <h3>Student Id:</h3>
+        <span><%= user_data[i].student_id %></span><br>
+        <h3>Age:</h3>
+        <span><%= user_data[i].age %></span><br>
+        <h3>Nationality:</h3>
+        <span><%= user_data[i].nationality %></span><br>
+        <h3>Degree:</h3>
+        <span><%= user_data[i].degree %></span><br>
+        <h3>Date added:</h3>
+        <span><%= user_data[i].dateAdded %></span><br>
+        <br><br>
+      </div>
+    <% } %>
+  </ul>
+  <script src="../server.js"></script>
+</body>
+</html>

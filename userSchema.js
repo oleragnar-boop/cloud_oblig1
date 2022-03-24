@@ -8,4 +8,4 @@ const userSchema = new mongoose.Schema({
     degree: {type:String, required:true},
     dateAdded: {type: Date, required: true, default: Date.now}
 })
-module.exports = mongoose.model("Users", userSchema)
+module.exports = mongoose.model("Users", userSchema, "user_data")
