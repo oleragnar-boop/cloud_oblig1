@@ -7,32 +7,41 @@
 </head>
 <body>
 
+   <!--Link to the form page-->
     <a href="/">Add and Update Forms</a>
     <h2>Data</h2>
+    
+     <!--Link that acts as a refresh button-->
     <a href="/data">Refresh</a><br>
     
     <h3>Search for a student by id</h3>
+    <!--Displaying the current id of the student selected-->
     <p>Current student selected: <%= currentId %></p>
 
+    <!--Form that reads the database to find a student of the id entered-->
 <form method="GET" action="/getstudent">
         <input type="number" placeholder="Enter id of a student" name="searchid" id="searchid"><br>
         <button type="submit" id='searchButton'>Search</button>
     </form>
 
     <h3>Search for a degree</h3>
+    <!--Displaying the degree currently selected-->
     <p>Current degree selected: <%= currentdegree %></p>
 
+    <!--Form that reads the database to find a students with a matching degree-->
     <form method="GET" action="/getdegrees">
       <input type="text" placeholder="Enter a degree" name="degree" id="degree"><br>
       <button type="submit" id='degreebutton'>Search</button>
   </form>
 
   <h3>Enter id of a student to delete</h3>
+  <!--Form that takes id as an input to delete a student from the database-->
   <form method="GET" action="/delstudent">
     <input type="number" placeholder="Enter id of a student" name="searchid" id="searchid"><br>
     <button type="submit" id='deleteButton'>Delete</button>
 </form><br>
 
+<!--ul that is looped through to display all the students that match the current paramaters-->
 <h3>Students will appear here in order of data added:</h3>
   <ul class="user_data">
     <% for(var i = 0; i < user_data.length; i++) {%>

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Add and update forms</title>
 </head>
+
 <body>
+  <!--Link to the data portal-->
   <a href="/data">Data Portal</a>
   <h1>Add and update forms</h1><br>
 
+  <!--Form for adding students to the database-->
   <h2>Add student</h2>
   <form action="/" method="POST">
     <label for="name">First name:</label><br>
@@ -25,6 +29,7 @@
     <button type="submit">Add User</button>
   </form><br>
 
+  <!--Form for updating students in the database. Student_id is the identifier-->
   <h2>Update student</h2>
   <form action="/updatestudent" method="POST">
     <label for="name">First name:</label><br>
@@ -44,4 +49,5 @@
 
 
 </body>
+
 </html>
