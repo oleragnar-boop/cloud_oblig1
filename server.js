@@ -9,6 +9,10 @@ const Users = require('./userSchema')
 
 //This project was made by Ole Ragnar Randen and Daniel Peder Björk as a part of the subject IDG2001 Cloud Technologies 
 
+// t0 event som printer timestamp on click
+// t1 på server i post
+// t2 på sevrver etter 
+// t3 hentet fra server
 
 //Connecting to the database via MongoCLient
 MongoClient.connect('mongodb+srv://admin:adminpassword@cluster0.qmp2g.mongodb.net/user_data?retryWrites=true&w=majority', { useUnifiedTopology: true })
@@ -111,8 +115,20 @@ MongoClient.connect('mongodb+srv://admin:adminpassword@cluster0.qmp2g.mongodb.ne
           }
         },
       ).then((result) => {
-        res.redirect('/')
+        res.redirect('/time')
       })
         .catch((error) => console.error(error));
+    })
+
+//GET method to get timestamps for t1 and t2
+    app.get('/time', (req, res) => {
+      console.log("t1", Date.now())
+      let t1 = Date.now()
+      db.collection('user_data').find().toArray()
+      .then(results => {
+        console.log("t2", Date.now())
+        let t2 = Date.now()
+        res.send({"results": results, "time":[t1, t2]})
+      })
     })
   });

@@ -47,6 +47,27 @@
     <button type="submit">Update User</button>
   </form><br>
 
+  <h2>Measure the data transmission latency</h2>
+  <button onclick="getTime()">Measure Time</button>
+  <script>
+    //function to measure the time it takes for the request to the database to come back to the client
+    //results are logged in the client console
+    async function getTime() {
+      let t0 = Date.now()
+      let t1 = 0
+      let t2 = 0
+      let t3 = 0
+      fetch('/time')
+        .then(response => response.json())
+        .then(data => {
+          t1 = data.time[0]
+          t2 = data.time[1]
+          t3 = Date.now()
+          console.log(t0, t1, t2, t3)
+          console.log((t3-t0)-(t2-t1))
+        })
+    };
+  </script>
 
 </body>
 
